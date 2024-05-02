@@ -5,10 +5,10 @@
 class items
 {
 private:
-    std::string items[];
+    std::string itemsInOrder[];
 
 
 public:
-
+    items();
 
 };
