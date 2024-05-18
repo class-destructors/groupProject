@@ -18,5 +18,5 @@ class kitchen
         order* getTail() const;
         int getCount() const;
         ~kitchen();
-
+        
 };

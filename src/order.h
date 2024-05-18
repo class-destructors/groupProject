@@ -6,12 +6,13 @@ class order
 {
     private:
         order* next;
-        item * items;
+        item* items;
         int id;
         float price;
         int table;
         item * head;
         item * tail;
+        int noi;
 
     public:
         order();
@@ -28,5 +29,36 @@ class order
         item* getTail() const;
         int getOrderId() const;
         float getPrice() const;
+        void sendToPrinter() const;
+        void sendToKitchen() const;
+        friend std::ostream& operator<<(std::ostream& out, const item& newItem); 
+        order& operator=(const order& rhs);
+{
+
+}
         ~order();
 };
+
+item::item(const item& otherItem)
+{
+    if (this->name != otherItem.name)
+    {
+        name = otherItem.name;
+        price = otherItem.price;
+
+        if (otherItem.nextItem != nullptr)
+        {
+            item* original = otherItem.nextItem;
+            item* current = new item;
+
+            if (!current)
+            {
+                cout << "\n\nERROR : FAILED MEMORY ALLOCATION";
+            }
+
+            current->setName(original->getItemName());
+            current->setPrice(original->getItemPrice());
+        }
+        
+    }
+}
