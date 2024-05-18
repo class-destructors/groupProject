@@ -6,59 +6,30 @@ class order
 {
     private:
         order* next;
-        item* items;
-        int id;
-        float price;
-        int table;
+        int orderID;
+        float totalPrice;
         item * head;
         item * tail;
         int noi;
 
     public:
         order();
-        order(int newId, float newPrice, int newTable);
+        order(int newId, float newTotalPrice);
         order(const order& otherOrder);
         order& operator=(const order& rhs);
         //overloaded insertion operator? 
-        void addItem(int itemID, float itemPrice);
-        std::ofstream printReceipt(); 
-        void setOrder(int newId, float newPrice, int newTable);
+        void setOrder(int newId, float newTotalPrice);
+        void addItem(std::string name, float price);
         void setNext(order* nextOrder);
         order* getNext() const;
         item* getHead() const;
         item* getTail() const;
         int getOrderId() const;
-        float getPrice() const;
+        float getTotalPrice() const;
         void sendToPrinter() const;
         void sendToKitchen() const;
-        friend std::ostream& operator<<(std::ostream& out, const item& newItem); 
-        order& operator=(const order& rhs);
-{
-
-}
+        void clearItems();
+        friend std::ostream& operator<<(std::ostream& out, const order& myOrder); 
         ~order();
 };
 
-item::item(const item& otherItem)
-{
-    if (this->name != otherItem.name)
-    {
-        name = otherItem.name;
-        price = otherItem.price;
-
-        if (otherItem.nextItem != nullptr)
-        {
-            item* original = otherItem.nextItem;
-            item* current = new item;
-
-            if (!current)
-            {
-                cout << "\n\nERROR : FAILED MEMORY ALLOCATION";
-            }
-
-            current->setName(original->getItemName());
-            current->setPrice(original->getItemPrice());
-        }
-        
-    }
-}

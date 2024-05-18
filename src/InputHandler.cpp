@@ -1,7 +1,5 @@
-#ifndef DRIVER_H
-#define DRIVER_H
-
 #include <iostream>
+#include "InputHandler.h"
 
 //this driver program instead of pos class?
 
@@ -17,22 +15,19 @@ void displayMenu()
 void viewMenuItems()
 {
     std::cout << "      Menu      \n";
-    std::cout << "1. Cheeseburguer - $29.\n";
-    std::cout << "2. Pizza - $20. \n";
-    std::cout << "3. Burrito - $18.\n";
-    std::cout << "4. Hamburguer - $18.\n";
+    std::cout << "1. Cheeseburger w/ Caviar- $29.\n";
+    std::cout << "2. Pizza w/ Gold Dust (Slice) - $20. \n";
+    std::cout << "3. Burrito w/ Rare Mushrooms- $18.\n";
+    std::cout << "4. Hamburguer w/ - $18.\n";
 }
 
 void addItems() 
 {
 
-
+    // call from order class
 }
 
 void finishOrder()
 {
 
 }
-
-
-#endif

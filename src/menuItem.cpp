@@ -25,9 +25,9 @@ void item::setPrice(float newPrice)
 {
     price = newPrice;
 }
-void item::setNext(item* nextItem)
+void item::setNext(item* newItem)
 {
-    item* newItem = nextItem;
+    nextItem = newItem;
 }
 item* item::getNext() const
 {
