@@ -1,5 +1,5 @@
 Cheeseburger $29
-Cheeseburger $29
+Pizza      $20
 
 Items: 
-Total Price: $58
+Total Price: $49

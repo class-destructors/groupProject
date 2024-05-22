@@ -3,11 +3,13 @@
 #include <iostream>
 #include <fstream>
 #include "Order.h"
+#include "kitchen.h"
 
 void displayMenu();
-void viewMenuItems(order& currentOrder);
+void placeOrder(order& currentOrder);
 void finishOrder(order& currentOrder);
 void printOrder(order& currentOrder);
+// void writeToSalesRecord(); ?
 
 void displayMenu()
 {
@@ -22,7 +24,7 @@ void displayMenu()
         std::cout << std::endl;
         if(toupper(answer) == 'Y')
         {
-            viewMenuItems(currentOrder);
+            placeOrder(currentOrder);
         }
         else if (toupper(answer) == 'N')
         {
@@ -35,7 +37,7 @@ void displayMenu()
     }
 }
 
-void viewMenuItems(order& currentOrder)
+void placeOrder(order& currentOrder)
 {
     int itemChoice;
     char orderMore;

@@ -157,14 +157,6 @@ float order::getTotalPrice() const
     }
     return total;
 }
-// void order::sendToPrinter() const
-// {
-
-// }
-// void order::sendToKitchen() const
-// {
-
-// }
 
 void order::clearItems()
 {
