@@ -14,6 +14,7 @@ class kitchen
         int getNumOfOrders() const;
         void setHead(order* newHead);
         void setTail(order* newTail);
+        void deleteHead();
         order* getHead() const;
         order* getTail() const;
         int getCount() const;
