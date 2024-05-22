@@ -1,15 +1,17 @@
 #include <iostream>
 #include "order.h"
+#include "InputHandler.h"
 
 using namespace std;
 
 
 int main()
 {
-    order test1(45, 89.0);
-    order test2(test1);
+    order test1;
 
-    cout << test2.getOrderId();
+    test1.addItem("Cheeseburger", 4);
+
+    displayMenu();
     
 
 

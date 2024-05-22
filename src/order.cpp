@@ -73,89 +73,90 @@ order::order(const order& otherOrder)
         
     }
 }
-// void order::addItem(std::string name, float price)
-// {
-//     item* newItem = new item(name, price);
+void order::addItem(std::string name, float price)
+{
+    item* newItem = new item(name, price);
 
-//     if (!head) 
-//     {
-//         // If the cart is empty, set the new node as the first and last node:
-//         head = tail = newItem;
-//     } else 
-//     {
-//         // If the cart is not empty, add the new node to the end of the list:
-//         tail->setNext(newItem);
-//         tail = newItem;
-//     }
+    if (!head) 
+    {
+        // If the cart is empty, set the new node as the first and last node:
+        head = tail = newItem;
+    } else 
+    {
+        // If the cart is not empty, add the new node to the end of the list:
+        tail->setNext(newItem);
+        tail = newItem;
+    }
 
-//     // Increment the number of items:
-//     noi++;
-// }
+    // Increment the number of items:
+    noi++;
+}
 
-// order& order::operator=(const order& rhs)
-// {
-//     // assigning temp pointer to first pointer of rightside
-// 	item* current = rhs.getHead();
+order& order::operator=(const order& rhs)
+{
+    // assigning temp pointer to first pointer of rightside
+	item* current = rhs.getHead();
     
-//     // conditional statement to ensure items are not already the same:
-//     if (this == &rhs)
-//     {
-//         cout << "ERROR : ITEM ASSIGNMENT IS TO ITSELF";
-//         exit(1);
-//     }
-//     else if (this != &rhs)
-//     {
-//         while (current)
-//         {
-//             // assigning data of rightside to left side:
-//             this->addItem(current->getItemName(), current->getItemPrice());
-//             current = current->getNext();
-//         }
-//     }
-//     return *this;
-// }
-// void order::setOrder(int newId, float newTotalPrice)
-// {
-//     orderID = newId;
-//     totalPrice = newTotalPrice;
-// }
+    // conditional statement to ensure items are not already the same:
+    if (this == &rhs)
+    {
+        cout << "ERROR : ITEM ASSIGNMENT IS TO ITSELF";
+        exit(1);
+    }
+    else if (this != &rhs)
+    {
+        while (current)
+        {
+            // assigning data of rightside to left side:
+            this->addItem(current->getItemName(), current->getItemPrice());
+            current = current->getNext();
+        }
+    }
+    return *this;
+}
 
-// void order::setNext(order* nextOrder)
-// {
-//     next = nextOrder;
-// }
-// order* order::getNext() const
-// {
-//     return next;
-// }
-// item* order::getHead() const
-// {
-//     return head;
-// }
-// item* order::getTail() const
-// {
-//     return tail;
-// }
+void order::setOrder(int newId, float newTotalPrice)
+{
+    orderID = newId;
+    totalPrice = newTotalPrice;
+}
+
+void order::setNext(order* nextOrder)
+{
+    next = nextOrder;
+}
+order* order::getNext() const
+{
+    return next;
+}
+item* order::getHead() const
+{
+    return head;
+}
+item* order::getTail() const
+{
+    return tail;
+}
 int order::getOrderId() const
 {
     return orderID;
 }
-// float order::getTotalPrice() const
-// {
-//     double total = 0.0;
-//     // beginning at the front of the linked list:
-//     item* temp = head;
+float order::getTotalPrice() const
+{
+    double total = 0.0;
+    // beginning at the front of the linked list:
+    item* temp = head;
     
-//     // the list will be iterated through until nullptr is reached:
-//     while(temp)
-//     {
-//         // combined assignment operator will continue adding to the total:
-//         total += temp->getItemPrice();
-//         // move to the next node:
-//         temp = temp->getNext();
-//     }
-//     return total;
-// }
+    // the list will be iterated through until nullptr is reached:
+    while(temp)
+    {
+        // combined assignment operator will continue adding to the total:
+        total += temp->getItemPrice();
+        // move to the next node:
+        temp = temp->getNext();
+    }
+    return total;
+}
 // void order::sendToPrinter() const
 // {
 
@@ -163,21 +164,6 @@ int order::getOrderId() const
 // void order::sendToKitchen() const
 // {
 
-// }
-// std::ostream& operator<<(std::ostream& out, const order& myOrder)
-// {
-//     item* temp = myOrder.head;
-
-// 	while (temp)
-// 	{	
-// 		out << left << setw(10) << temp->getItemName() << " $" << temp->getItemPrice() << endl;
-//         temp = temp->getNext();
-// 	}
-
-// 	out << endl << "Total Number of Items: " << myOrder.noi << endl;
-//     out << "Total Price: $" << myOrder.getTotalPrice() << endl;
-
-// 	return out;
 // }
 
 void order::clearItems()
@@ -189,12 +175,50 @@ void order::clearItems()
     while (current != nullptr) 
     {
         item* next = current->getNext();
+        // deallocate memory:
         delete current;
+        // reassign pointer to next node:
         current = next;
     }
     head = tail = nullptr;
     noi = 0;
 }
+
+void order::listItems() const
+{
+    // beginning at the front of the linked list:
+    item* temp = head;
+
+    // the list will be iterated through until nullptr is reached:
+    while(temp)
+    {   
+        // output item name:
+        cout << left << setw(10) << temp->getItemName();
+        // output item price:
+        cout << " $" << temp->getItemPrice();
+        // move to the next node:
+        temp = temp->getNext();
+        cout << endl;
+    }
+
+}
+std::ostream& operator<<(std::ostream& out, const order& myOrder)
+{
+    item* temp = myOrder.head;
+
+	while (temp)
+	{	
+		out << left << setw(10) << temp->getItemName() << " $" << temp->getItemPrice() << endl;
+        temp = temp->getNext();
+	}
+
+	out << endl << "Items: \n";
+    myOrder.listItems();
+    out << "Total Price: $" << myOrder.getTotalPrice() << endl;
+
+	return out;
+}
+
 order::~order()
 {
     clearItems();

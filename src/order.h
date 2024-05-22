@@ -29,6 +29,7 @@ class order
         void sendToPrinter() const;
         void sendToKitchen() const;
         void clearItems();
+        void listItems() const;
         friend std::ostream& operator<<(std::ostream& out, const order& myOrder); 
         ~order();
 };
