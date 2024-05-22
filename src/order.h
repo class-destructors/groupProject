@@ -1,34 +1,22 @@
-#pragma once
+#ifndef ORDER_H
+#define ORDER_H
 
-#include "menuItem.h"
+#include "Node.h"
 
-class order
+class Order
 {
-    private:
-        order* next;
-        int orderID;
-        float totalPrice;
-        item * head;
-        item * tail;
-        int noi;
+public:
 
-    public:
-        order();
-        order(int newId, float newTotalPrice);
-        order(const order& otherOrder);
-        order& operator=(const order& rhs);
-        //overloaded insertion operator? 
-        void setOrder(int newId, float newTotalPrice);
-        void addItem(std::string name, float price);
-        void setNext(order* nextOrder);
-        order* getNext() const;
-        item* getHead() const;
-        item* getTail() const;
-        int getOrderId() const;
-        float getTotalPrice() const;
-        void clearItems();
-        void listItems() const;
-        friend std::ostream& operator<<(std::ostream& out, const order& myOrder); 
-        ~order();
+
+
+private:
+    Order* first;
+    Order* last;
+    int noi;
+
 };
 
+
+
+
+#endif
