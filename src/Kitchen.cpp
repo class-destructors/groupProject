@@ -51,7 +51,7 @@ void kitchen::deleteHead()
   else
   {
     //handle errors properly here
-    std::cout << "ERROR: improper operation on an empty or single element list << std::endl;
+    std::cout << "ERROR: improper operation on an empty or single element list" << std::endl;
   }
 }
 
