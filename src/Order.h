@@ -19,7 +19,7 @@ class order
         order& operator=(const order& rhs);
         //overloaded insertion operator? 
         void setOrder(int newId, float newTotalPrice);
-        void addItem(std::string name, float price);
+        void addItem(std::string name, float price, int itemNum);
         void setNext(order* nextOrder);
         order* getNext() const;
         item* getHead() const;
@@ -30,6 +30,7 @@ class order
         void sendToKitchen() const;
         void clearItems();
         void listItems() const;
+        void removeItem(int itemNum);
         friend std::ostream& operator<<(std::ostream& out, const order& myOrder); 
         ~order();
 };

@@ -73,9 +73,9 @@ order::order(const order& otherOrder)
         
     }
 }
-void order::addItem(std::string name, float price)
+void order::addItem(std::string name, float price, int itemNum)
 {
-    item* newItem = new item(name, price);
+    item* newItem = new item(name, price, itemNum);
 
     if (!head) 
     {
@@ -87,7 +87,6 @@ void order::addItem(std::string name, float price)
         tail->setNext(newItem);
         tail = newItem;
     }
-
     // Increment the number of items:
     noi++;
 }
@@ -108,7 +107,7 @@ order& order::operator=(const order& rhs)
         while (current)
         {
             // assigning data of rightside to left side:
-            this->addItem(current->getItemName(), current->getItemPrice());
+            this->addItem(current->getItemName(), current->getItemPrice(), current->getItemNum());
             current = current->getNext();
         }
     }
@@ -157,14 +156,7 @@ float order::getTotalPrice() const
     }
     return total;
 }
-// void order::sendToPrinter() const
-// {
 
-// }
-// void order::sendToKitchen() const
-// {
-
-// }
 
 void order::clearItems()
 {
@@ -188,17 +180,20 @@ void order::listItems() const
 {
     // beginning at the front of the linked list:
     item* temp = head;
+    int itemNum = 1;
 
     // the list will be iterated through until nullptr is reached:
     while(temp)
     {   
+        cout << itemNum << ". ";
         // output item name:
-        cout << left << setw(10) << temp->getItemName();
+        cout << left << setw(12) << temp->getItemName();
         // output item price:
-        cout << " $" << temp->getItemPrice();
+        cout << right << setw(11) << "$" << fixed << setprecision(2) << temp->getItemPrice();
         // move to the next node:
         temp = temp->getNext();
         cout << endl;
+        itemNum++;
     }
 
 }
@@ -206,19 +201,56 @@ std::ostream& operator<<(std::ostream& out, const order& myOrder)
 {
     item* temp = myOrder.head;
 
+    out << endl << "Items: \n";
 	while (temp)
 	{	
 		out << left << setw(10) << temp->getItemName() << " $" << temp->getItemPrice() << endl;
         temp = temp->getNext();
 	}
-
-	out << endl << "Items: \n";
-    myOrder.listItems();
-    out << "Total Price: $" << myOrder.getTotalPrice() << endl;
+    out << endl << "Total Price: $" << myOrder.getTotalPrice() << endl;
 
 	return out;
 }
+void order::removeItem(int itemNum) 
+{
+    if (!head) 
+    {
+        std::cout << "\n\nYou have no items to remove.\n\n";
+        return;
+    }
 
+    item* current = head;
+    item* previous = nullptr;
+
+    // Iterate through the list to find the item to remove
+    int currentIndex = 1;
+    while (current) {
+        if (currentIndex == itemNum) 
+        {
+            if (previous == nullptr) 
+            {
+                // Removing the head of the list
+                head = current->getNext();
+            } 
+            else 
+            {
+                // Bypassing the node to remove it
+                previous->setNext(current->getNext());
+            }
+
+            delete current;
+            noi--;
+            std::cout << "\n\nItem #" << itemNum << " has been removed.\n\n";
+            return;
+        }
+
+        previous = current;
+        current = current->getNext();
+        currentIndex++;
+    }
+
+    std::cout << "\n\nThere is no item associated with this number.\n\n";
+}
 order::~order()
 {
     clearItems();
