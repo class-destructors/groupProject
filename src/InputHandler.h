@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iomanip>
 #include "Order.h"
-#include "kitchen.h"
+#include "Kitchen.h"
 #define UNDERLINE "\033[4m"
 #define CLOSEUNDERLINE "\033[0m"
 #define ITALIC "\033[3m"

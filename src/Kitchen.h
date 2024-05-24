@@ -1,6 +1,6 @@
 #pragma once
-#include "order.h"
-#include "menuItem.h"
+#include "Order.h"
+#include "MenuItem.h"
 
 class kitchen
 {
