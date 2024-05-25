@@ -12,7 +12,8 @@
 
 void displayMenu();
 void placeOrder(order& currentOrder);
-void finishOrder(order& currentOrder);
+void calculateTip(order& currentOrder);
+void finishOrder(order& currentOrder, float& finalTip, float& finalTotal);
 void printOrder(order& currentOrder);
 void showCurrentOrder(order& currentOrder);
 
@@ -221,7 +222,7 @@ void placeOrder(order& currentOrder)
     }
     // encapsulating loop condition, will exit if customer chooses to finish order:
     while (toupper(orderMore) != 'F');
-    finishOrder(currentOrder);
+    calculateTip(currentOrder);
 }
 
 void showCurrentOrder(order& currentOrder)
@@ -232,11 +233,11 @@ void showCurrentOrder(order& currentOrder)
     std::cout << std::endl << "Total: $"<< currentOrder.getTotalPrice() << std::endl << std::endl;
 }
 
-void finishOrder(order& currentOrder)
+void calculateTip(order& currentOrder)
 {
-    // lists order items and total price as final reference for user:
-    
     int tipChoice;
+    float finalTip;
+    float finalTotal;
     float tenPercent;
     tenPercent = (currentOrder.getTotalPrice() * .10); 
     float fifteenPercent;
@@ -249,26 +250,49 @@ void finishOrder(order& currentOrder)
     std::cout << "(0) - No Tip" << "\t\t(1) 10% - $" << tenPercent << "\t\t(2) 15% - $" << fifteenPercent << "\t\t(3) 20% - $" << twentyPercent << std::endl;
     std::cout << "Enter your choice: ";
     std::cin >> tipChoice;
-    // switch(tipChoice)
-    // {
-    // case 1:
-        
-    // case 2:
+    switch(tipChoice)
+    {
+    case 1:
+        finalTip = tenPercent;
+        finalTotal = currentOrder.getTotalPrice();
+        finalTotal = finalTotal + tenPercent;
+        break;
+    case 2:
+        finalTip = fifteenPercent;
+        finalTotal = currentOrder.getTotalPrice();
+        finalTotal = finalTotal + fifteenPercent;
+        break;
+    case 3:
+        finalTip = twentyPercent;
+        finalTotal = currentOrder.getTotalPrice();
+        finalTotal = finalTotal + twentyPercent;
+        break;
+    case 4:
+        finalTip = 0.0;
+        finalTotal = currentOrder.getTotalPrice();
+        break;
+    default:
+        std::cout << "Error - invalid choice\n";
+    finishOrder(currentOrder, finalTip, finalTotal);
+}
 
-    // case 3:
+void finishOrder(order& currentOrder, float& finalTip, float& finalTotal)
+{
+    // lists order items and total price as final reference for user:
 
-    // case 4:
-
-    // }
 
     std::cout << UNDERLINE << "Your receipt:" << CLOSEUNDERLINE << std::endl;
+    // we should probably put order # here:
     currentOrder.listItems();
     std::cout << std::endl << "Total: $"<< currentOrder.getTotalPrice() << std::endl;
-    std::cout << std::endl << "Your order will be right out!";      // wait time?
+    std::cout<< std::endl << "Tip: $" << finalTip << std::endl;
+    std::cout<< std::endl<< "Final Total: $" << finalTotal << std::endl;
+    std::cout << std::endl << "Your order will be right out!\n";      
 
     // sends order to printOrder function:
     printOrder(currentOrder);
 }
+
 
 void printOrder(order& currentOrder)
 {
