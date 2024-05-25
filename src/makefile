@@ -6,7 +6,5 @@ item: MenuItem.cpp
 	g++ -c MenuItem.cpp -o MenuItem.o
 kitchen: Kitchen.cpp
 	g++ -c Kitchen.cpp -o Kitchen.o
-
-
 clean:
 	rm *.o driver Printer.txt

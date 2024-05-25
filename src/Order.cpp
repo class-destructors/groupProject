@@ -73,6 +73,8 @@ order::order(const order& otherOrder)
         
     }
 }
+
+
 void order::addItem(std::string name, float price, int itemNum)
 {
     item* newItem = new item(name, price, itemNum);
@@ -90,6 +92,7 @@ void order::addItem(std::string name, float price, int itemNum)
     // Increment the number of items:
     noi++;
 }
+
 
 order& order::operator=(const order& rhs)
 {
@@ -114,24 +117,32 @@ order& order::operator=(const order& rhs)
     return *this;
 }
 
+
 void order::setOrder(int newId, float newTotalPrice)
 {
     orderID = newId;
     totalPrice = newTotalPrice;
 }
 
+
 void order::setNext(order* nextOrder)
 {
     next = nextOrder;
 }
+
+
 order* order::getNext() const
 {
     return next;
 }
+
+
 item* order::getHead() const
 {
     return head;
 }
+
+
 item* order::getTail() const
 {
     return tail;

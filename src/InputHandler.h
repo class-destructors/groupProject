@@ -50,6 +50,34 @@ void displayMenu()
     }
 }
 
+void customerChoice(std::string name, float price, order& currentOrder)
+{
+  currentOrder.addItem(name, price, 1);
+  showCurrentOrder(currentOrder);
+  char orderMore;
+  bool finished = false;
+  while(!finished)
+  {
+    std::cout << "Press Y to add another item.\nPress R to remove an item.\nPress F to finish your order." << std::endl; // error handling
+    std::cin >> orderMore;
+    orderMore = toUpper(orderMore);
+    if(orderMore == 'F')
+    {
+      finished = true;
+    }
+    else if(orderMore == 'Y')
+    {
+
+    }
+    else if(orderMore == 'R')
+    {
+
+    }
+
+  }
+
+}
+
 void placeOrder(order& currentOrder)
 {
     int itemChoice;
@@ -58,6 +86,7 @@ void placeOrder(order& currentOrder)
     do
     {
         // food menu display:
+        // prints the options to order, and takes in the user's choice
         std::cout << UNDERLINE << "FOOD MENU" << CLOSEUNDERLINE << std::endl;
         std::cout << "#1 Cheezebürger" << std::setw(40-14) << " " << std::setw(6) << std::right << " $54.99\n";
         std::cout << ITALIC << "\t Unicorn Meat, American Cheese, Caviar\n\n" << CLOSEITALIC;
