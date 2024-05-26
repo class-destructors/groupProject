@@ -50,6 +50,8 @@ void displayMenu()
     }
 }
 
+/*
+//doesn't respect the main loop and is too tightly bound to the placeOrder function. this entire section needs to be cleaned up
 void customerChoice(std::string name, float price, order& currentOrder)
 {
   currentOrder.addItem(name, price, 1);
@@ -77,6 +79,7 @@ void customerChoice(std::string name, float price, order& currentOrder)
   }
 
 }
+*/
 
 void placeOrder(order& currentOrder)
 {
