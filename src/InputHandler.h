@@ -15,6 +15,7 @@ void placeOrder(order& currentOrder);
 void finishOrder(order& currentOrder);
 void printOrder(order& currentOrder);
 void showCurrentOrder(order& currentOrder);
+void kitchenMenu();
 
 void displayMenu()
 {
@@ -312,6 +313,46 @@ void printOrder(order& currentOrder)
     outFile.close();
 }
 // kitchen functions should go here:
+
+void kitchenLogin()
+{
+  //this should enter a loop
+  //3 cases:
+  //right password
+  //wrong password
+  //user decides to go back
+  //when the user quits, we should drop out of this loop
+  //then the menu will repeat
+  //otherwise we stick in the login loop
+  bool userContinue = true;
+  while(userContinue)
+  {
+    std::string password = "123";
+    //prompt the user to enter the password or type quit
+    std::cout << "Please enter the password or type \"quit\"";
+    std::cout << "\n>";
+    std::string userInput;
+    std::cin >> userInput;
+    //if quit set continue false and drop
+    if(userInput == "quit")
+    {
+      userContinue = false;
+    }
+    //else if password right, call kitchen
+    else if(userInput == password)
+    {
+      kitchenMenu();
+      userContinue = false;
+      break;
+    }
+    //else we continue
+  }
+}
+
+void kitchenMenu()
+{
+  std::cout << "Ktichen!" << std::endl;
+}
 
 
 #endif
