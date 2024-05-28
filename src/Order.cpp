@@ -207,7 +207,6 @@ std::ostream& operator<<(std::ostream& out, const order& myOrder)
 		out << left << setw(10) << temp->getItemName() << " $" << temp->getItemPrice() << endl;
         temp = temp->getNext();
 	}
-    out << endl << "Total Price: $" << myOrder.getTotalPrice() << endl;
 
 	return out;
 }

@@ -12,21 +12,21 @@
 
 void displayMenu();
 void placeOrder(order& currentOrder);
+void showCurrentOrder(order& currentOrder);
 void calculateTip(order& currentOrder);
 void finishOrder(order& currentOrder, float& finalTip, float& finalTotal);
-void printOrder(order& currentOrder);
-void showCurrentOrder(order& currentOrder);
+void printOrder(order& currentOrder, float& finalTip, float& finalTotal);
 
 void displayMenu()
 {
     order currentOrder;
-    char answer;
+    char answer = '/0';
 
     // loop allows customer to have multiple tries if input is incorrect:
     while(toupper(answer) != 'Y')
     {
         // menu display:
-        std::cout << "Greetings Valued Customer!\n";
+        std::cout << "\nGreetings Valued Customer!\n";
         std::cout << "Press Y to continue to ordering page.\n";
         std::cout << "Press N to quit.\n";
         std::cin >> answer;
@@ -54,7 +54,7 @@ void displayMenu()
 void placeOrder(order& currentOrder)
 {
     int itemChoice;
-    char orderMore;
+    int orderMore;
 
     do
     {
@@ -79,149 +79,82 @@ void placeOrder(order& currentOrder)
         case 1:
             // item chosen by customer is added to order:
             currentOrder.addItem("Cheezebürger", 54.99, 1);
-            // customer's current order is displayed:
-            showCurrentOrder(currentOrder);
-            // loop showcases an additional menu screen, where customer can add/remove items or finish their order:
-            do
-                {   
-                    // menu display:
-                    std::cout << "Press Y to add another item.\nPress R to remove an item.\nPress F to finish your order." << std::endl; // error handling
-                    std::cin >> orderMore;
-
-                    //conditional if customer chooses to remove item:
-                    if (toupper(orderMore) == 'R')
-                    {
-                        int removeIndex;
-                        std::cout << "Which item would you like to remove?";
-                        std::cin >> removeIndex;
-                        // item chosen corresponds to the index on the entire order, removeItem() is called:
-                        currentOrder.removeItem(removeIndex);
-                        // updated order is shown to user after item removal:
-                        showCurrentOrder(currentOrder);
-                    }
-                    // error handling message:
-                    else if(toupper(orderMore) != 'Y' && toupper(orderMore) != 'R' && toupper(orderMore) != 'F')
-                    {
-                        std::cout << "Invalid Entry. Please Try Again.\n\n";
-                    }
-                } 
-                // allows for user to re-try if input does not correspond to menu:
-                while (toupper(orderMore) != 'Y' && toupper(orderMore) != 'R' && toupper(orderMore) != 'F');
-            std::cout << std::endl;
             break;
         
         case 2:
             // item chosen by customer is added to order:
-            currentOrder.addItem("Pizza Slice", 27.99, 1);
-            // customer's current order is displayed:
-            showCurrentOrder(currentOrder);
-            // loop showcases an additional menu screen, where customer can add/remove items or finish their order:
-            do
-                {   // menu display:
-                    std::cout << "Press Y to add another item.\nPress R to remove an item.\nPress F to finish your order." << std::endl;
-                    std::cin >> orderMore;
-
-                    // conditional if customer chooses to remove item:
-                    if (toupper(orderMore) == 'R')
-                    {
-                        int removeIndex;
-                        std::cout << "Which item would you like to remove?";
-                        std::cin >> removeIndex;
-                        // item chosen corresponds to the index on the entire order, removeItem() is called:
-                        currentOrder.removeItem(removeIndex);
-                        // updated order is shown to user after item removal:
-                        showCurrentOrder(currentOrder);
-                    }
-                    // error handling message:
-                    else if(toupper(orderMore) != 'Y' && toupper(orderMore) != 'R' && toupper(orderMore) != 'F')
-                    {
-                        std::cout << "Invalid Entry. Please Try Again.\n\n";
-                    }
-                } 
-                // allows for user to re-try if input does not correspond to menu:
-                while (toupper(orderMore) != 'Y' && toupper(orderMore) != 'R' && toupper(orderMore) != 'F');
-            std::cout << std::endl;             
+            currentOrder.addItem("Pizza Slice", 27.99, 1);        
             break;
         
         case 3:
             // item chosen by customer is added to order:
-            currentOrder.addItem("Burrito", 78.99,1);
-            // customer's current order is displayed:
-            showCurrentOrder(currentOrder);
-            // loop showcases an additional menu screen, where customer can add/remove items or finish their order:
-            do
-                {   // menu display:
-                    std::cout << "Press Y to add another item.\nPress R to remove an item.\nPress F to finish your order." << std::endl;
-                    std::cin >> orderMore;
-
-                    // conditional if customer chooses to remove item:
-                    if (toupper(orderMore) == 'R')
-                    {
-                        int removeIndex;
-                        std::cout << "Which item would you like to remove?";
-                        std::cin >> removeIndex;
-                        // item chosen corresponds to the index on the entire order, removeItem() is called:
-                        currentOrder.removeItem(removeIndex);
-                        // updated order is shown to user after item removal:
-                        showCurrentOrder(currentOrder);
-                    }
-                    // error handling message:
-                    else if(toupper(orderMore) != 'Y' && toupper(orderMore) != 'R' && toupper(orderMore) != 'F')
-                    {
-                        std::cout << "Invalid Entry. Please Try Again.\n\n";
-                    }
-                } 
-                // allows for user to re-try if input does not correspond to menu:
-                while (toupper(orderMore) != 'Y' && toupper(orderMore) != 'R' && toupper(orderMore) != 'F');
-            std::cout << std::endl;             
+            currentOrder.addItem("Burrito", 78.99,1);        
             break;
         
         case 4:
             // item chosen by customer is added to order:
-            currentOrder.addItem("Hambürger ", 50.99,1);
-            // customer's current order is displayed:
-            showCurrentOrder(currentOrder);
-            // loop showcases an additional menu screen, where customer can add/remove items or finish their order:
-            do
-                {   // menu display:
-                    std::cout << "Press Y to add another item.\nPress R to remove an item.\nPress F to finish your order." << std::endl;
-                    std::cin >> orderMore;
-
-                    // conditional if customer chooses to remove item:
-                    if (toupper(orderMore) == 'R')
-                    {
-                        int removeIndex;
-                        std::cout << "Which item would you like to remove?";
-                        std::cin >> removeIndex;
-                        // item chosen corresponds to the index on the entire order, removeItem() is called:
-                        currentOrder.removeItem(removeIndex);
-                        // updated order is shown to user after item removal:
-                        showCurrentOrder(currentOrder);
-                    }
-                    // error handling message:
-                    else if(toupper(orderMore) != 'Y' && toupper(orderMore) != 'R' && toupper(orderMore) != 'F')
-                    {
-                        std::cout << "Invalid Entry. Please Try Again.\n\n";
-                    }
-                } 
-                // allows for user to re-try if input does not correspond to menu:
-                while (toupper(orderMore) != 'Y' && toupper(orderMore) != 'R' && toupper(orderMore) != 'F');
-            std::cout << std::endl;             
+            currentOrder.addItem("Hambürger ", 50.99,1);       
             break;
         
         case 5:
             // reverts back to main menu:
             displayMenu();
-            break;
+            system("clear");
+            return;
         
         default:
             // error handling message:
             std::cout << "Error - please enter a valid choice from the menu screen.\n";
+            continue;
         }
     
-    }
+        showCurrentOrder(currentOrder);   
+
+          // loop showcases an additional menu screen, where customer can add/remove items or finish their order:
+        do
+        {
+            // menu display:
+            std::cout << "Press 1 to add another item.\nPress 2 to remove an item.\nPress 3 to finish your order.\nPress 4 to return to Main Menu (order will be reset)\n\n";
+            std::cin >> orderMore;
+
+            if (orderMore == 1)
+            {
+                // break the inner loop to add another item
+                break;
+            }
+            else if (orderMore == 2)
+            {
+                int removeIndex;
+                std::cout << "Which item would you like to remove? ";
+                std::cin >> removeIndex;
+                // item chosen corresponds to the index on the entire order, removeItem() is called:
+                currentOrder.removeItem(removeIndex);
+                // updated order is shown to user after item removal:
+                showCurrentOrder(currentOrder);
+            }
+            else if (orderMore == 3)
+            {
+                // exit both loops to finish the order
+                calculateTip(currentOrder);
+                return;
+            }
+            else if (orderMore == 4)
+            {
+                displayMenu();
+                return; // exit this function to avoid adding more items
+            }
+            else
+            {
+                // error handling message:
+                std::cout << "Invalid Entry. Please Try Again.\n\n";
+            }
+        }
+        // allows for user to re-try if input does not correspond to menu:
+        while (true);
+        }
     // encapsulating loop condition, will exit if customer chooses to finish order:
-    while (toupper(orderMore) != 'F');
+    while (orderMore != 3);
+    system("clear");
     calculateTip(currentOrder);
 }
 
@@ -231,6 +164,7 @@ void showCurrentOrder(order& currentOrder)
     std::cout << UNDERLINE << "Your current order:" CLOSEUNDERLINE << std::endl;
     currentOrder.listItems();
     std::cout << std::endl << "Total: $"<< currentOrder.getTotalPrice() << std::endl << std::endl;
+
 }
 
 void calculateTip(order& currentOrder)
@@ -238,49 +172,50 @@ void calculateTip(order& currentOrder)
     int tipChoice;
     float finalTip;
     float finalTotal;
-    float tenPercent;
-    tenPercent = (currentOrder.getTotalPrice() * .10); 
-    float fifteenPercent;
-    fifteenPercent = (currentOrder.getTotalPrice() * .15);
-    float twentyPercent;
-    twentyPercent = (currentOrder.getTotalPrice() * .20);
+    float tenPercent = (currentOrder.getTotalPrice() * .10); 
+    float fifteenPercent = (currentOrder.getTotalPrice() * .15);
+    float twentyPercent = (currentOrder.getTotalPrice() * .20);
     std::cout << std::fixed << std::setprecision(2);
 
-    std::cout << "Add a tip?\n";
-    std::cout << "(0) - No Tip" << "\t\t(1) 10% - $" << tenPercent << "\t\t(2) 15% - $" << fifteenPercent << "\t\t(3) 20% - $" << twentyPercent << std::endl;
+    std::cout<< "Here is your total: " << currentOrder.getTotalPrice();
+    std::cout << "\n\nAdd a tip?\n";
+    std::cout << "(0) - No Tip" << "\t\t(1) 10% - $" << tenPercent << "\t\t(2) 15% - $" << fifteenPercent << "\t\t(3) 20% - $" << twentyPercent;
+    std::cout << "\n(4) Custom Tip\n\n";
     std::cout << "Enter your choice: ";
     std::cin >> tipChoice;
+
     switch(tipChoice)
     {
+    case 0:
+        finalTip = 0.0;
+        break;
     case 1:
         finalTip = tenPercent;
-        finalTotal = currentOrder.getTotalPrice();
-        finalTotal = finalTotal + tenPercent;
         break;
     case 2:
         finalTip = fifteenPercent;
-        finalTotal = currentOrder.getTotalPrice();
-        finalTotal = finalTotal + fifteenPercent;
         break;
     case 3:
         finalTip = twentyPercent;
-        finalTotal = currentOrder.getTotalPrice();
-        finalTotal = finalTotal + twentyPercent;
         break;
     case 4:
-        finalTip = 0.0;
-        finalTotal = currentOrder.getTotalPrice();
+        std::cout << "Custom Tip: $";
+        std::cin >> finalTip;
         break;
     default:
-        std::cout << "Error - invalid choice\n";
+        std::cout << "Error - invalid choice. No tip added.\n";
+        finalTip = 0.0;
+    }
+
+    finalTotal = (currentOrder.getTotalPrice()) + finalTip;
     finishOrder(currentOrder, finalTip, finalTotal);
 }
 
+
 void finishOrder(order& currentOrder, float& finalTip, float& finalTotal)
 {
+    system("clear");
     // lists order items and total price as final reference for user:
-
-
     std::cout << UNDERLINE << "Your receipt:" << CLOSEUNDERLINE << std::endl;
     // we should probably put order # here:
     currentOrder.listItems();
@@ -290,17 +225,19 @@ void finishOrder(order& currentOrder, float& finalTip, float& finalTotal)
     std::cout << std::endl << "Your order will be right out!\n";      
 
     // sends order to printOrder function:
-    printOrder(currentOrder);
+    printOrder(currentOrder, finalTip, finalTotal);
 }
 
 
-void printOrder(order& currentOrder)
+void printOrder(order& currentOrder, float& finalTip, float& finalTotal)
 {
     // writes the "receipt" to a file to act as a printer:
     std::ofstream outFile;
     outFile.open("Printer.txt");
     // utilization of overloaded insertion operator:
-    outFile << currentOrder;
+    outFile << currentOrder << std::endl;
+    outFile  << "Tip: $" << finalTip << std::endl;
+    outFile << "Final Total: $" << finalTotal << std::endl;
     outFile.close();
 }
 // kitchen functions should go here:
