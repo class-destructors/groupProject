@@ -1,5 +1,5 @@
 driver: Order.o MenuItem.o Kitchen.o 
-	g++ main.cpp Order.o MenuItem.o Kitchen.o -o driver
+	g++ main.cpp MenuItem.o Order.o Kitchen.o -o driver
 order: Order.cpp
 	g++ -c Order.cpp -o Order.o
 item: MenuItem.cpp

@@ -6,17 +6,19 @@ using namespace std;
 
 #include "Order.h"
 
+int order::numOfOrders = 0;
 
 order::order()
 {
-    orderID = 0;
+  numOfOrders += 1;
+    orderID = numOfOrders;
     totalPrice = 0.0;
     int noi = 0;
     head = nullptr;
     tail = nullptr;
     next = nullptr;
-    
 }
+
 order::order(int newId, float newTotalPrice)
 {
     orderID = newId;
@@ -24,6 +26,7 @@ order::order(int newId, float newTotalPrice)
 }
 order::order(const order& otherOrder)
 {
+    
     orderID = otherOrder.orderID;
     totalPrice = otherOrder.totalPrice;
 
@@ -262,7 +265,21 @@ void order::removeItem(int itemNum)
 
     std::cout << "\n\nThere is no item associated with this number.\n\n";
 }
+
+void listOrders(order* current)
+{
+  //recursively go through the list and print the items
+  if(current == nullptr)
+  {
+    std::cout << "\n";
+    return;
+  }
+  current->listItems();
+  listOrders(current->getNext());
+}
+
 order::~order()
 {
+  this->numOfOrders--;
     clearItems();
 }

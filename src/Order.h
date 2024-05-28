@@ -13,6 +13,7 @@ class order
         int noi;
 
     public:
+        static int numOfOrders;
         order();
         order(int newId, float newTotalPrice);
         order(const order& otherOrder);
@@ -30,6 +31,7 @@ class order
         void sendToKitchen() const;
         void clearItems();
         void listItems() const;
+        void listOrders(order* next);
         void removeItem(int itemNum);
         friend std::ostream& operator<<(std::ostream& out, const order& myOrder); 
         ~order();
