@@ -1,8 +1,0 @@
-
-Items: 
-Cheezebürger $54.99
-Pizza Slice $27.99
-Hambürger  $50.99
-
-Tip: $5
-Final Total: $138.97

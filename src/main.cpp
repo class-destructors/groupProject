@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "InputHandler.h"
 
 using namespace std;
@@ -20,11 +21,15 @@ int main()
             displayMenu();
             break;
         case 2:
-            // enter credential function
+            kitchenLogin();
+            break;
         default:
             cout << "Error - Invalid Entry. Please try again." << endl;
         } 
+        //this doesn't loop properly if the user quits out of the login
+        //fix later
     } while (userType != 1 && userType != 2);
+
     
    
 

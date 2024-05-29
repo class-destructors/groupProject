@@ -3,7 +3,7 @@
 
 using namespace std;
 
-#include "menuItem.h"
+#include "MenuItem.h"
 
 item::item()     
 {

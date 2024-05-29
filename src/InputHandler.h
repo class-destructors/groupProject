@@ -4,7 +4,7 @@
 #include <fstream>
 #include <iomanip>
 #include "Order.h"
-#include "kitchen.h"
+#include "Kitchen.h"
 #define UNDERLINE "\033[4m"
 #define CLOSEUNDERLINE "\033[0m"
 #define ITALIC "\033[3m"
@@ -16,6 +16,7 @@ void showCurrentOrder(order& currentOrder);
 void calculateTip(order& currentOrder);
 void finishOrder(order& currentOrder, float& finalTip, float& finalTotal);
 void printOrder(order& currentOrder, float& finalTip, float& finalTotal);
+void kitchenMenu();
 
 void displayMenu()
 {
@@ -51,6 +52,37 @@ void displayMenu()
     }
 }
 
+/*
+//doesn't respect the main loop and is too tightly bound to the placeOrder function. this entire section needs to be cleaned up
+void customerChoice(std::string name, float price, order& currentOrder)
+{
+  currentOrder.addItem(name, price, 1);
+  showCurrentOrder(currentOrder);
+  char orderMore;
+  bool finished = false;
+  while(!finished)
+  {
+    std::cout << "Press Y to add another item.\nPress R to remove an item.\nPress F to finish your order." << std::endl; // error handling
+    std::cin >> orderMore;
+    orderMore = toUpper(orderMore);
+    if(orderMore == 'F')
+    {
+      finished = true;
+    }
+    else if(orderMore == 'Y')
+    {
+
+    }
+    else if(orderMore == 'R')
+    {
+
+    }
+
+  }
+
+}
+*/
+
 void placeOrder(order& currentOrder)
 {
     int itemChoice;
@@ -59,6 +91,7 @@ void placeOrder(order& currentOrder)
     do
     {
         // food menu display:
+        // prints the options to order, and takes in the user's choice
         std::cout << UNDERLINE << "FOOD MENU" << CLOSEUNDERLINE << std::endl;
         std::cout << "#1 Cheezebürger" << std::setw(40-14) << " " << std::setw(6) << std::right << " $54.99\n";
         std::cout << ITALIC << "\t Unicorn Meat, American Cheese, Caviar\n\n" << CLOSEITALIC;
@@ -243,6 +276,46 @@ void printOrder(order& currentOrder, float& finalTip, float& finalTotal)
     outFile.close();
 }
 // kitchen functions should go here:
+
+void kitchenLogin()
+{
+  //this should enter a loop
+  //3 cases:
+  //right password
+  //wrong password
+  //user decides to go back
+  //when the user quits, we should drop out of this loop
+  //then the menu will repeat
+  //otherwise we stick in the login loop
+  bool userContinue = true;
+  while(userContinue)
+  {
+    std::string password = "123";
+    //prompt the user to enter the password or type quit
+    std::cout << "Please enter the password or type \"quit\"";
+    std::cout << "\n>";
+    std::string userInput;
+    std::cin >> userInput;
+    //if quit set continue false and drop
+    if(userInput == "quit")
+    {
+      userContinue = false;
+    }
+    //else if password right, call kitchen
+    else if(userInput == password)
+    {
+      kitchenMenu();
+      userContinue = false;
+      break;
+    }
+    //else we continue
+  }
+}
+
+void kitchenMenu()
+{
+
+}
 
 
 #endif
