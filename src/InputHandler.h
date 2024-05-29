@@ -351,7 +351,7 @@ void kitchenLogin()
 
 void kitchenMenu()
 {
-  std::cout << "Ktichen!" << std::endl;
+
 }
 
 
