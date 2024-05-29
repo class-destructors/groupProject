@@ -314,8 +314,12 @@ void kitchenMenu(kitchen& kitchen)
       std::cin >> orderNum;
       order* selOrder = kitchen.searchOrders(orderNum, *kitchen.getHead());
       std::cout << selOrder << std::endl;
-      
-
+      if(selOrder)
+      {
+        std::cout << "Select an item to remove. " << std::endl;
+        std::cin >> orderNum;
+        selOrder->removeItem(orderNum);
+      }
     }
     else if(userInput == 3)
     {

@@ -96,6 +96,7 @@ void kitchen::removeOrder(int orderNum)
         delete current;
         previous->setNext(nullptr);
         tail = previous;
+        found = true;
       }
     }
     else

@@ -10,6 +10,7 @@ int main()
 {
   order kate;
   order rachel;
+  order hugo;
 
   kate.addItem("Hamburger", 20, 1);
   kate.addItem("Pizza", 10, 2);
@@ -17,6 +18,8 @@ int main()
   rachel.addItem("Burger", 20, 1);
   rachel.addItem("Quesadilla", 15, 2);
   rachel.addItem("Wings", 13, 3);
+
+  
 
   rachel.listItems();
 
@@ -27,12 +30,17 @@ int main()
   kitchen.setHead(&rachel);
   cout << "This is a test!" << endl;
 
+  kate.clearItems();
   
   kitchen.listOrders(kitchen.getHead());
 
   order* findKate = kitchen.searchOrders(1, *kitchen.getHead());
   cout << "reached?" << endl;
   cout << *findKate;
+  
+  kitchen.removeOrder(1);
+
+  kitchen.listOrders(kitchen.getHead());
 
   return 0;
 }
