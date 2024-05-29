@@ -23,9 +23,16 @@ int main()
   kate.listItems();
 
   kitchen kitchen;
-  kitchen.setHead(kate);
-  kitchen.setHead(rachel);
-  kitchen.listOrders();
+  kitchen.setHead(&kate);
+  kitchen.setHead(&rachel);
+  cout << "This is a test!" << endl;
+
+  
+  kitchen.listOrders(kitchen.getHead());
+
+  order* findKate = kitchen.searchOrders(1, *kitchen.getHead());
+  cout << "reached?" << endl;
+  cout << *findKate;
 
   return 0;
 }

@@ -215,7 +215,7 @@ std::ostream& operator<<(std::ostream& out, const order& myOrder)
 {
     item* temp = myOrder.head;
 
-    out << endl << "Items: \n";
+    out << endl << "Order# " << myOrder.getOrderId() << std::endl;
 	while (temp)
 	{	
 		out << left << setw(10) << temp->getItemName() << " $" << temp->getItemPrice() << endl;

@@ -5,8 +5,8 @@
 class kitchen
 {
     private: 
-        order * head;
-        order * tail;
+        order * head = nullptr;
+        order * tail = nullptr;
         int count;
     
     public:
@@ -17,7 +17,9 @@ class kitchen
         void deleteHead();
         order* getHead() const;
         order* getTail() const;
-        void listOrders(order* next);
+        void listOrders(order* current);
+        void removeOrder(int orderNum);
+        order* searchOrders(int orderId, order& order);
         int getCount() const;
         ~kitchen();
         

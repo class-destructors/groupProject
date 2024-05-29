@@ -25,9 +25,11 @@ void kitchen::setHead(order* newHead)
 
 
   //first set the next pointer to the current head
+  
   //second set the head pointer to the new order
+  
 
-  newHead->setNext(newHead);
+  newHead->setNext(head);
   head = newHead;
   count++;
 }
@@ -62,8 +64,36 @@ void kitchen::listOrders(order* current)
     std::cout << "\n";
     return;
   }
-  std::cout << current;
-  listOrders(current->getNext());
+  else
+  {
+    std::cout << *current;
+    listOrders(current->getNext());
+  }
+}
+
+void kitchen::removeOrder(int orderNum)
+{
+  order* previous = nullptr;
+  order* current = head;
+  order* next = head->getNext();
+  do
+  {
+
+  } while()
+}
+
+order* kitchen::searchOrders(int itemNum, order& current)
+{
+  if(&current == nullptr)
+  {
+    std::cout << "Error: order not found" << std::endl;
+    return nullptr;
+  }
+  else if(current.getOrderId() == itemNum)
+  {
+    return &current;
+  }
+  searchOrders(itemNum, *current.getNext());
 }
 
 order* kitchen::getHead() const

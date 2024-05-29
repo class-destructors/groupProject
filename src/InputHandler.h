@@ -13,15 +13,15 @@
 void displayMenu(kitchen& kitchen);
 void placeOrder(order& currentOrder, kitchen& kitchen);
 void showCurrentOrder(order& currentOrder);
-void calculateTip(order& currentOrder);
-void finishOrder(order& currentOrder, float& finalTip, float& finalTotal);
+void calculateTip(order& currentOrder, kitchen& kitchen);
+void finishOrder(order& currentOrder, float& finalTip, float& finalTotal, kitchen& kitchen);
 void printOrder(order& currentOrder, float& finalTip, float& finalTotal);
 void kitchenMenu(kitchen& kitchen);
 
 void displayMenu(kitchen& kitchen)
 {
     order currentOrder;
-    char answer = '/0';
+    char answer;
 
     // loop allows customer to have multiple tries if input is incorrect:
     while(toupper(answer) != 'Y')
@@ -138,7 +138,7 @@ void placeOrder(order& currentOrder, kitchen& kitchen)
             else if (orderMore == 3)
             {
                 // exit both loops to finish the order
-                calculateTip(currentOrder);
+                calculateTip(currentOrder, kitchen);
                 kitchen.setHead(&currentOrder);
                 return;
             }
@@ -159,7 +159,7 @@ void placeOrder(order& currentOrder, kitchen& kitchen)
     // encapsulating loop condition, will exit if customer chooses to finish order:
     while (orderMore != 3);
     system("clear");
-    calculateTip(currentOrder);
+    calculateTip(currentOrder, kitchen);
 }
 
 void showCurrentOrder(order& currentOrder)
@@ -171,7 +171,7 @@ void showCurrentOrder(order& currentOrder)
 
 }
 
-void calculateTip(order& currentOrder)
+void calculateTip(order& currentOrder, kitchen& kitchen)
 {
     int tipChoice;
     float finalTip;
@@ -212,11 +212,11 @@ void calculateTip(order& currentOrder)
     }
 
     finalTotal = (currentOrder.getTotalPrice()) + finalTip;
-    finishOrder(currentOrder, finalTip, finalTotal);
+    finishOrder(currentOrder, finalTip, finalTotal, kitchen);
 }
 
 
-void finishOrder(order& currentOrder, float& finalTip, float& finalTotal)
+void finishOrder(order& currentOrder, float& finalTip, float& finalTotal, kitchen& kitchen)
 {
     system("clear");
     // lists order items and total price as final reference for user:
@@ -230,6 +230,7 @@ void finishOrder(order& currentOrder, float& finalTip, float& finalTotal)
 
     // sends order to printOrder function:
     printOrder(currentOrder, finalTip, finalTotal);
+    kitchen.setHead(&currentOrder);
 }
 
 
@@ -288,9 +289,42 @@ void kitchenMenu(kitchen& kitchen)
   while(run)
   {
     //print the kitchen's list of orders
+    std::cout << kitchen.getHead() << std::endl;
     kitchen.listOrders(kitchen.getHead());
-    
-    
+
+    int userInput;
+    std::cout << "Please enter an action." << std::endl;
+    std::cout << "1: Remove an order" << std::endl;
+    std::cout << "2: Remove an Item from an order" << std::endl;
+    std::cout << "3: Exit" << std::endl;
+    std::cout << ">";
+    std::cin >> userInput;
+
+    if(userInput == 1)
+    {
+      std::cout << "Select an order ID: " << std::endl;
+      int orderNum;
+      std::cin >> orderNum;
+      kitchen.removeOrder(orderNum);
+    }
+    else if(userInput == 2)
+    {
+      std::cout << "Select an order ID: " << std::endl;
+      int orderNum;
+      std::cin >> orderNum;
+      order* selOrder = kitchen.searchOrders(orderNum, *kitchen.getHead());
+      std::cout << selOrder << std::endl;
+      
+
+    }
+    else if(userInput == 3)
+    {
+      run = false;
+    }
+    else
+    {
+      std::cout << "Error: invalid solution" << std::endl;
+    }
   }
 }
 

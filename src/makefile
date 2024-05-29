@@ -9,4 +9,4 @@ item: MenuItem.cpp
 kitchen: Kitchen.cpp
 	g++ -c Kitchen.cpp -o Kitchen.o
 clean:
-	rm *.o driver Printer.txt
+	rm *.o driver tests Printer.txt
