@@ -76,10 +76,39 @@ void kitchen::removeOrder(int orderNum)
   order* previous = nullptr;
   order* current = head;
   order* next = head->getNext();
-  do
+  bool found = false;
+  while(head && !found)
   {
-
-  } while()
+    if(orderNum == current->getOrderId())
+    {
+      if(previous && next) //check if we're in the middle
+      {
+        previous->setNext(next);
+        delete current;
+      }
+      else if(!previous) //we're at the start of the list
+      {
+        delete current;
+        head = next;
+      }
+      else if(!next) //we're at the end of the list
+      {
+        delete current;
+        previous->setNext(nullptr);
+        tail = previous;
+      }
+    }
+    else
+    {
+      previous = current;
+      current = next;
+      next = next->getNext();
+    }
+  }
+  if(!found)
+  {
+    std::cout << "Order not found." << std::endl;
+  }
 }
 
 order* kitchen::searchOrders(int itemNum, order& current)
