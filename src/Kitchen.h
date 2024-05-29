@@ -17,6 +17,7 @@ class kitchen
         void deleteHead();
         order* getHead() const;
         order* getTail() const;
+        void listOrders(order* next);
         int getCount() const;
         ~kitchen();
         

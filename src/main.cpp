@@ -8,6 +8,7 @@ using namespace std;
 int main()
 {
     int userType;
+    kitchen backHouse;
     do
     {
         cout << "Welcome to Chef's Kiss Fast Food Co." << endl;
@@ -18,10 +19,10 @@ int main()
         switch(userType)
         {
         case 1:
-            displayMenu();
+            displayMenu(backHouse);
             break;
         case 2:
-            kitchenLogin();
+            kitchenLogin(backHouse);
             break;
         default:
             cout << "Error - Invalid Entry. Please try again." << endl;

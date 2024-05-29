@@ -31,7 +31,6 @@ class order
         void sendToKitchen() const;
         void clearItems();
         void listItems() const;
-        void listOrders(order* next);
         void removeItem(int itemNum);
         friend std::ostream& operator<<(std::ostream& out, const order& myOrder); 
         ~order();

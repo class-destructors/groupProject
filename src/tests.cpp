@@ -22,7 +22,10 @@ int main()
 
   kate.listItems();
 
-  
+  kitchen kitchen;
+  kitchen.setHead(kate);
+  kitchen.setHead(rachel);
+  kitchen.listOrders();
 
   return 0;
 }

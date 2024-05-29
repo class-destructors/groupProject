@@ -55,6 +55,17 @@ void kitchen::deleteHead()
   }
 }
 
+void kitchen::listOrders(order* current)
+{
+  if(current == nullptr)
+  {
+    std::cout << "\n";
+    return;
+  }
+  std::cout << current;
+  listOrders(current->getNext());
+}
+
 order* kitchen::getHead() const
 {
   return head;

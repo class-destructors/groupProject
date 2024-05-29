@@ -10,15 +10,15 @@
 #define ITALIC "\033[3m"
 #define CLOSEITALIC "\033[0m"
 
-void displayMenu();
-void placeOrder(order& currentOrder);
+void displayMenu(kitchen& kitchen);
+void placeOrder(order& currentOrder, kitchen& kitchen);
 void showCurrentOrder(order& currentOrder);
 void calculateTip(order& currentOrder);
 void finishOrder(order& currentOrder, float& finalTip, float& finalTotal);
 void printOrder(order& currentOrder, float& finalTip, float& finalTotal);
-void kitchenMenu();
+void kitchenMenu(kitchen& kitchen);
 
-void displayMenu()
+void displayMenu(kitchen& kitchen)
 {
     order currentOrder;
     char answer = '/0';
@@ -36,7 +36,7 @@ void displayMenu()
         {
             // customer will be taken to placeOrder:
             system("clear");
-            placeOrder(currentOrder);
+            placeOrder(currentOrder, kitchen);
         }
         else if (toupper(answer) == 'N')
         {
@@ -52,38 +52,7 @@ void displayMenu()
     }
 }
 
-/*
-//doesn't respect the main loop and is too tightly bound to the placeOrder function. this entire section needs to be cleaned up
-void customerChoice(std::string name, float price, order& currentOrder)
-{
-  currentOrder.addItem(name, price, 1);
-  showCurrentOrder(currentOrder);
-  char orderMore;
-  bool finished = false;
-  while(!finished)
-  {
-    std::cout << "Press Y to add another item.\nPress R to remove an item.\nPress F to finish your order." << std::endl; // error handling
-    std::cin >> orderMore;
-    orderMore = toUpper(orderMore);
-    if(orderMore == 'F')
-    {
-      finished = true;
-    }
-    else if(orderMore == 'Y')
-    {
-
-    }
-    else if(orderMore == 'R')
-    {
-
-    }
-
-  }
-
-}
-*/
-
-void placeOrder(order& currentOrder)
+void placeOrder(order& currentOrder, kitchen& kitchen)
 {
     int itemChoice;
     int orderMore;
@@ -131,7 +100,7 @@ void placeOrder(order& currentOrder)
         
         case 5:
             // reverts back to main menu:
-            displayMenu();
+            displayMenu(kitchen);
             system("clear");
             return;
         
@@ -170,11 +139,12 @@ void placeOrder(order& currentOrder)
             {
                 // exit both loops to finish the order
                 calculateTip(currentOrder);
+                kitchen.setHead(&currentOrder);
                 return;
             }
             else if (orderMore == 4)
             {
-                displayMenu();
+                displayMenu(kitchen);
                 return; // exit this function to avoid adding more items
             }
             else
@@ -277,7 +247,7 @@ void printOrder(order& currentOrder, float& finalTip, float& finalTotal)
 }
 // kitchen functions should go here:
 
-void kitchenLogin()
+void kitchenLogin(kitchen& kitchen)
 {
   //this should enter a loop
   //3 cases:
@@ -304,7 +274,7 @@ void kitchenLogin()
     //else if password right, call kitchen
     else if(userInput == password)
     {
-      kitchenMenu();
+      kitchenMenu(kitchen);
       userContinue = false;
       break;
     }
@@ -312,9 +282,16 @@ void kitchenLogin()
   }
 }
 
-void kitchenMenu()
+void kitchenMenu(kitchen& kitchen)
 {
-
+  bool run = true;
+  while(run)
+  {
+    //print the kitchen's list of orders
+    kitchen.listOrders(kitchen.getHead());
+    
+    
+  }
 }
 
 
