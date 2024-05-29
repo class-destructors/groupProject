@@ -79,11 +79,11 @@ void order::addItem(std::string name, float price, int itemNum)
 
     if (!head) 
     {
-        // If the cart is empty, set the new node as the first and last node:
+        // If the order is empty, set the new node as the first and last node:
         head = tail = newItem;
     } else 
     {
-        // If the cart is not empty, add the new node to the end of the list:
+        // If the order is not empty, add the new node to the end of the list:
         tail->setNext(newItem);
         tail = newItem;
     }

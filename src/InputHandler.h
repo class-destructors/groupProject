@@ -114,7 +114,8 @@ void placeOrder(order& currentOrder)
         do
         {
             // menu display:
-            std::cout << "Press 1 to add another item.\nPress 2 to remove an item.\nPress 3 to finish your order.\nPress 4 to return to Main Menu (order will be reset)\n\n";
+            std::cout << "Press 1 to add another item.\nPress 2 to remove an item.\n"
+            << "Press 3 to finish your order.\nPress 4 to return to Main Menu (order will be reset).\n\n";
             std::cin >> orderMore;
 
             if (orderMore == 1)
@@ -177,7 +178,7 @@ void calculateTip(order& currentOrder)
     float twentyPercent = (currentOrder.getTotalPrice() * .20);
     std::cout << std::fixed << std::setprecision(2);
 
-    std::cout<< "Here is your total: " << currentOrder.getTotalPrice();
+    std::cout<< "Your total is: $" << currentOrder.getTotalPrice();
     std::cout << "\n\nAdd a tip?\n";
     std::cout << "(0) - No Tip" << "\t\t(1) 10% - $" << tenPercent << "\t\t(2) 15% - $" << fifteenPercent << "\t\t(3) 20% - $" << twentyPercent;
     std::cout << "\n(4) Custom Tip\n\n";
@@ -231,6 +232,7 @@ void finishOrder(order& currentOrder, float& finalTip, float& finalTotal)
 
 void printOrder(order& currentOrder, float& finalTip, float& finalTotal)
 {
+    std::cout << std::fixed << std::setprecision(2);
     // writes the "receipt" to a file to act as a printer:
     std::ofstream outFile;
     outFile.open("Printer.txt");
